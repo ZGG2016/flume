@@ -8,7 +8,7 @@
 
 流中的每个组件(source、sink 或 channel)都有特定于其类型和实例的名称、类型和属性集。
 
-例如，Avro source 需要主机名(或 IP 地址)和端口号来接收数据。内存 channel 可以有最大的队列大小(“capacity”)，HDFS sink 需要知道文件系统的 URI、创建文件的路径、文件旋转的频率(“HDFS.rollinterval”)等。
+例如，Avro source 需要主机名(或 IP 地址)和端口号来接收数据。内存 channel 可以有最大的队列大小(“capacity”)，HDFS sink 需要知道文件系统的 URI、创建文件的路径、文件滚动的频率(“HDFS.rollinterval”)等。
 
 组件的所有这些属性都需要在托管 Flume agent 的属性文件中设置。
 
@@ -20,7 +20,7 @@ agent 需要知道要加载哪些独立的组件，以及它们如何连接以�
 
 为此，列出 agent 中每个 sources、sinks 和 channels 的名称，然后指定每个 sink 和 source 的连接 channel。
 
-例如，agent 通过 file-channel 文件通道将 events 从名为 avroWeb 的 Avro source 流到 HDFS sink HDFS -cluster1。配置文件将包含这些组件的名称，并将 file-channel 作为 avroWeb source 和 hdfs-cluster1 sink 的共享 channel。
+例如，agent 通过 file-channel 文件通道将 events 从名为 avroWeb 的 Avro source 流到 HDFS sink hdfs-cluster1。配置文件将包含这些组件的名称，并将 file-channel 作为 avroWeb source 和 hdfs-cluster1 sink 的共享 channel。
 
 ## 3、Starting an agent
 
@@ -97,7 +97,7 @@ agent 需要知道要加载哪些独立的组件，以及它们如何连接以�
 
 > The original Flume terminal will output the event in a log message.
 
-原始的 Flume 终端将在日志消息中输出 event。
+原始的 Flume 终端将在日志消息中输出 event。 【注意Event的结构】
 
 	12/06/19 15:32:19 INFO source.NetcatSource: Source starting
 	12/06/19 15:32:19 INFO source.NetcatSource: Created serverSocket:sun.nio.ch.ServerSocketChannelImpl[/127.0.0.1:44444]
@@ -119,7 +119,7 @@ Flume 有能力**在配置中替换环境变量**。例如
 
 > NB: it currently works for values only, not for keys. (Ie. only on the “right side” of the = mark of the config lines.)
 
-注意:它目前只适用于值，而不是键。(即，仅在配置行 = 标记的右侧。)
+注意:它目前只适用于值，而不是键。(即，仅在配置行等号的右侧。)
 
 > This can be enabled via Java system properties on agent invocation by setting propertiesImplementation = org.apache.flume.node.EnvVarResolverProperties.
 
@@ -180,6 +180,7 @@ Flume 通过 Zookeeper 支持 Agent 配置。这是一个实验性的功能。
 	$ bin/flume-ng agent –conf conf -z zkhost:2181,zkhost1:2181 -p /flume –name a1 -Dflume.root.logger=INFO,console
 
 Argument Name  | Default  |  Description
+---|:---|:---
 z	           |    –	  |  Zookeeper connection string. Comma separated list of hostname:port【Zookeeper连接字符串。逗号分隔的hostname:port列表】
 p	           |  /flume  |  Base Path in Zookeeper to store Agent configurations【Zookeeper中存储配置Agent的基路径】
 

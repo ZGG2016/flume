@@ -315,11 +315,11 @@ deserializer.maxBlobLength |	100000000 |  The maximum number of bytes to read an
 
 它定期以 JSON 格式将每个文件的最后读取位置写入到给定的位置文件。
 
-如果 Flume 由于某种原因停止或关闭，则可以从现有位置文件上的写入位置重新开始读取。【断点续传】
+如果 Flume 由于某种原因停止或关闭，则可以【从现有位置文件上】的写入位置重新开始读取。【断点续传】
 
 > In other use case, this source can also start tailing from the arbitrary position for each files using the given position file. When there is no position file on the specified path, it will start tailing from the first line of each files by default.
 
-该 source 也可以使用给定的位置文件从任意位置开始读取每个文件。当在指定路径上没有位置文件时，默认情况下，将从每个文件的第一行开始读取。
+该 source 也可以使用给定的位置文件【从任意位置开始读取每个文件】。当在指定路径上没有位置文件时，默认情况下，将从每个文件的第一行开始读取。
 
 > Files will be consumed in order of their modification time. File with the oldest modification time will be consumed first.
 

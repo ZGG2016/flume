@@ -37,7 +37,7 @@ Flume 的使用不仅限于日志数据聚合。由于数据源是可定制的�
 
 一个 Flume event 被定义为一个数据流单元，它具有一个字节有效负载和一组可选字符串属性的。
 
-一个 Flume agent 是一个 (JVM) 进程，它承载着从外部源到下一个目标(hop)的事件流。
+一个 Flume agent 是一个 (JVM) 进程，它承载着从外部源到下一个目的地(hop)的事件流。
 
 ![UserGuide_image00](./image/UserGuide_image00.png)
 
@@ -55,7 +55,7 @@ file channel 就是一个例子：它由本地文件系统支持。
 
 sink 将 event 从 channel 中移除，并将其放入外部存储库，如 HDFS(通过 Flume HDFS sink)，或将其转发到流中的下一个 Flume agent(下一跳)的 Flume source。
 
-给定代理中的源和接收与通道中暂存的事件异步运行。
+给定 agent 中的 source 和 sink 与 channel 中暂存的事件异步运行。
 
 ### 3.2、Complex flows
 
